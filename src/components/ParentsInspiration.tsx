@@ -14,10 +14,9 @@ const photos = [
 
 const ParentsInspiration = () => {
   const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation();
-  const { ref: parallaxRef, offset } = useParallax(0.3);
 
   return (
-    <section ref={parallaxRef} id="parents-inspiration" className="relative py-24 px-4 overflow-hidden">
+    <section id="parents-inspiration" className="relative py-24 px-4 overflow-hidden">
 
       {/* Content */}
       <div className="relative z-20 max-w-7xl mx-auto">
