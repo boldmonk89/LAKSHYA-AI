@@ -21,49 +21,49 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Military luxury theme - Dark orange and black */
+    /* Military luxury theme - Deep Black & Brass Gold */
     --background: 0 0% 5%;
-    --foreground: 30 100% 95%;
+    --foreground: 210 20% 98%; /* Ultra-readable Slate White */
 
     --card: 0 0% 8%;
-    --card-foreground: 30 100% 95%;
+    --card-foreground: 210 20% 98%;
 
     --popover: 0 0% 8%;
-    --popover-foreground: 30 100% 95%;
+    --popover-foreground: 210 20% 98%;
 
-    /* Golden-red primary for aesthetic gradient */
-    --primary: 35 95% 55%;
-    --primary-foreground: 0 0% 100%;
-    --primary-glow: 10 90% 55%;
+    /* Premium Brass Gold */
+    --primary: 43 96% 58%; 
+    --primary-foreground: 0 0% 0%;
+    --primary-glow: 43 96% 70%;
 
-    /* Military olive secondary */
-    --secondary: 82 20% 30%;
-    --secondary-foreground: 30 100% 95%;
+    /* Tactical Olive */
+    --secondary: 85 15% 15%;
+    --secondary-foreground: 43 96% 58%;
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 30 20% 65%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 215 15% 65%;
 
-    --accent: 35 95% 55%;
+    --accent: 43 96% 58%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 15%;
-    --ring: 35 95% 55%;
+    --border: 0 0% 18%;
+    --input: 0 0% 12%;
+    --ring: 43 96% 58%;
 
     --radius: 0.75rem;
 
-    /* Gradients - Golden to Red */
-    --gradient-hero: linear-gradient(135deg, hsl(35 95% 55% / 0.1), hsl(0 0% 5%));
-    --gradient-accent: linear-gradient(135deg, hsl(35 95% 55%), hsl(10 90% 55%));
+    /* Gradients - Brass Gold to Amber */
+    --gradient-hero: linear-gradient(135deg, hsl(43 96% 58% / 0.15), hsl(0 0% 5%));
+    --gradient-accent: linear-gradient(135deg, hsl(43 96% 58%), hsl(35 95% 55%));
     --gradient-dark: linear-gradient(180deg, hsl(0 0% 5%), hsl(0 0% 8%));
 
-    /* Shadows - Golden glow */
-    --shadow-glow: 0 0 40px hsl(35 95% 55% / 0.3);
-    --shadow-card: 0 10px 30px -10px hsl(0 0% 0% / 0.5);
-    --shadow-section: 0 0 60px hsl(35 95% 55% / 0.15);
+    /* Shadows - Tactical glow */
+    --shadow-glow: 0 0 40px hsl(43 96% 58% / 0.25);
+    --shadow-card: 0 10px 30px -10px hsl(0 0% 0% / 0.6);
+    --shadow-section: 0 0 60px hsl(43 96% 58% / 0.12);
 
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
