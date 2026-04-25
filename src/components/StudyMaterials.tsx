@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { FileText, Download, ExternalLink } from "lucide-react";
-import backgroundImage from "@/assets/soldiers-celebration.jpg";
+
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 
