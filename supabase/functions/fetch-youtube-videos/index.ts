@@ -19,6 +19,12 @@ function isShort(title: string, description: string): boolean {
   return haystack.includes('#shorts') || haystack.includes('#short');
 }
 
+function hasPrashantDhawan(title: string, description: string): boolean {
+  const haystack = `${title} ${description}`.toLowerCase();
+  // Match common spellings: "prashant dhawan", "prashant dhwan", or just "prashant"
+  return /prashant\s*(dh[aw]+an)?/i.test(haystack);
+}
+
 function parseYouTubeRSS(xml: string): YouTubeVideo[] {
   const videos: YouTubeVideo[] = [];
   const entries = xml.match(/<entry>([\s\S]*?)<\/entry>/g) || [];
@@ -37,6 +43,7 @@ function parseYouTubeRSS(xml: string): YouTubeVideo[] {
 
       if (!title || !videoId) continue;
       if (isShort(title, description)) continue;
+      if (!hasPrashantDhawan(title, description)) continue;
 
       videos.push({
         title: title.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"'),
