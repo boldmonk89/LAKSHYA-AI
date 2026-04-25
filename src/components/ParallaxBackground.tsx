@@ -39,8 +39,7 @@ const ParallaxBackground = () => {
             backgroundRepeat: 'no-repeat',
             opacity: imageIndex === index ? 0.9 : 0,
             filter: 'blur(2px)',
-            transform: `translateY(${parallaxOffset}px) scale(1.15)`,
-            transformOrigin: 'top center',
+            transform: `translateY(${parallaxOffset}px)`,
             willChange: 'transform, opacity',
           }}
         />
