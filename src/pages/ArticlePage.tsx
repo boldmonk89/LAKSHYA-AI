@@ -12,7 +12,7 @@ const ArticlePage = () => {
 
   if (!article) {
     return (
-      <main className="min-h-screen bg-background flex items-center justify-center">
+      <main className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">Article Not Found</h1>
           <Link to="/analysis" className="text-primary hover:underline">← Back to Analysis</Link>
@@ -24,7 +24,7 @@ const ArticlePage = () => {
   const category = categories.find((c) => c.id === article.category);
 
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen">
       <ScrollProgress />
       
       {/* Nav */}

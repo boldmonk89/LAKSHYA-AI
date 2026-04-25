@@ -1,7 +1,5 @@
 import { Card } from "@/components/ui/card";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { useParallax } from "@/hooks/useParallax";
-import backgroundImage from "@/assets/ima-dehradun.jpg";
 import officerMom1 from "@/assets/officer-mom-1.jpg";
 import officerMom2 from "@/assets/officer-mom-2.webp";
 import officerMom3 from "@/assets/officer-mom-3.jpg";

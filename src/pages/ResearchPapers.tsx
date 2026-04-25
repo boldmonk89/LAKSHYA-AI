@@ -129,7 +129,7 @@ const ResearchPapers = () => {
   };
 
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen">
       <ScrollProgress />
 
       <header className="border-b border-border/50 glass-strong sticky top-0 z-50">

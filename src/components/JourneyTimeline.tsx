@@ -1,8 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { CheckCircle2, BookOpen, Users, Stethoscope, Trophy, GraduationCap, Medal } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { useParallax } from "@/hooks/useParallax";
-import backgroundImage from "@/assets/nda-building.jpg";
 
 const timelineSteps = [
   {
