@@ -1,17 +1,16 @@
 import { Card } from "@/components/ui/card";
 import { useState, useEffect } from "react";
 import { Play, Youtube, ExternalLink } from "lucide-react";
-import backgroundImage from "@/assets/nda-background.jpg";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { invokeWithRetry } from "@/hooks/useRetryFetch";
 import { Badge } from "@/components/ui/badge";
+import { invokeWithRetry } from "@/utils/supabaseRetry";
+import backgroundImage from "@/assets/soldiers-celebration.jpg";
 
 interface ChannelVideo {
-  title: string;
   videoId: string;
+  title: string;
   thumbnail: string;
   pubDate: string;
-  description: string;
 }
 
 const staticVideos = [
@@ -35,21 +34,7 @@ const staticVideos = [
     videoId: "WZecSmzMCfs",
     thumbnail: "https://img.youtube.com/vi/WZecSmzMCfs/maxresdefault.jpg",
     duration: "Expert Insights"
-  },
-  {
-    title: "GTO Tasks",
-    description: "Group testing officer outdoor tasks",
-    videoId: "VdgWEqxWojQ",
-    thumbnail: "https://img.youtube.com/vi/VdgWEqxWojQ/maxresdefault.jpg",
-    duration: "Practical Demo"
-  },
-  {
-    title: "Sample TAT Stories",
-    description: "TAT story examples and analysis",
-    videoId: "BTEM0BeT9nU",
-    thumbnail: "https://img.youtube.com/vi/BTEM0BeT9nU/maxresdefault.jpg",
-    duration: "Channel"
-  },
+  }
 ];
 
 const VideoCard = ({ video, index }: { video: typeof staticVideos[0], index: number }) => {
@@ -162,7 +147,6 @@ const VideoResources = () => {
 
   return (
     <section id="video-resources" className="relative py-24 px-4 overflow-hidden">
-
       <div className="relative z-20 max-w-7xl mx-auto">
         <div ref={titleRef} className={`text-center mb-16 scroll-fade-up ${titleVisible ? 'visible' : ''}`}>
           <h2 className="text-4xl md:text-5xl font-bold mb-3 text-gradient glow">Video Resources</h2>
@@ -215,7 +199,7 @@ const VideoResources = () => {
               Learn from those who succeeded, apply what you learned
             </p>
             <p className="text-base md:text-lg text-muted-foreground text-center italic">
-              जो सफल हुए उनसे सीखो, जो सीखा उसे लागू करो
+              जो सफल हुए उनसे सीखo, जो सीखा उसे लागू करो
             </p>
           </div>
         </div>
