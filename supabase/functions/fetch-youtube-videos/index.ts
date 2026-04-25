@@ -3,7 +3,7 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version',
 };
 
-const CHANNEL_ID = "UCucdXgDbCHWBXrWcog4rQPw";
+const CHANNEL_ID = "UCx5IVi4ELn5Wt60RiT-HvBA";
 const RSS_URL = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
 
 interface YouTubeVideo {
@@ -33,7 +33,7 @@ function parseYouTubeRSS(xml: string): YouTubeVideo[] {
         videos.push({
           title: title.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"'),
           videoId,
-          thumbnail: `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`,
+          thumbnail: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
           pubDate: pubDate || new Date().toISOString(),
           description: descMatch?.[1]?.trim().slice(0, 200) || '',
         });
