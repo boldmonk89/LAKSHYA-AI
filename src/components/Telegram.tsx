@@ -37,18 +37,6 @@ const Telegram = () => {
   return (
     // 👇 ID changed to "communities" + scroll offset so fixed navbar content hide na ho
     <section id="communities" className="relative py-24 px-4 overflow-hidden scroll-mt-24 md:scroll-mt-28">
-      {/* Fixed Background */}
-      <div
-        className="fixed inset-0 z-0"
-        style={{
-          backgroundImage: `url(${backgroundImage})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundAttachment: "fixed",
-        }}
-      />
-      
-      <div className="fixed inset-0 bg-black/20 backdrop-blur-sm z-10" />
 
       {/* Content */}
       <div className="relative z-20 max-w-7xl mx-auto">
