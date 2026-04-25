@@ -92,6 +92,7 @@ const VideoCard = ({ video, index }: { video: typeof staticVideos[0], index: num
 const ChannelVideoCard = ({ video, index }: { video: ChannelVideo, index: number }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.2 });
+  const [thumbUrl, setThumbUrl] = useState(video.thumbnail);
 
   const formatDate = (dateStr: string) => {
     try {
@@ -113,7 +114,12 @@ const ChannelVideoCard = ({ video, index }: { video: ChannelVideo, index: number
             />
           ) : (
             <div className="relative w-full h-full cursor-pointer" onClick={() => setIsPlaying(true)}>
-              <img src={video.thumbnail} alt={video.title} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" />
+              <img 
+                src={thumbUrl} 
+                alt={video.title} 
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                onError={() => setThumbUrl(`https://img.youtube.com/vi/${video.videoId}/mqdefault.jpg`)}
+              />
               <div className="absolute inset-0 bg-black/40 flex items-center justify-center transition-opacity duration-300 group-hover:bg-black/60">
                 <div className="w-16 h-16 rounded-full bg-destructive/80 flex items-center justify-center backdrop-blur-sm">
                   <Play className="w-8 h-8 text-white ml-1" fill="white" />
@@ -165,16 +171,9 @@ const VideoResources = () => {
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">Expert-curated video content covering all SSB stages</p>
         </div>
 
-        {/* SSB Guide Videos */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {staticVideos.map((video, index) => (
-            <VideoCard key={index} video={video} index={index} />
-          ))}
-        </div>
-
-        {/* Channel Videos */}
+        {/* Channel Videos First */}
         {channelVideos.length > 0 && (
-          <div className="mt-16">
+          <div className="mb-16">
             <div className="text-center mb-8">
               <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
                 Latest from <span className="text-gradient">Career247</span>
@@ -195,6 +194,13 @@ const VideoResources = () => {
             </div>
           </div>
         )}
+
+        {/* SSB Guide Videos */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {staticVideos.map((video, index) => (
+            <VideoCard key={index} video={video} index={index} />
+          ))}
+        </div>
 
         {/* Motivational Line */}
         <div ref={(el) => {

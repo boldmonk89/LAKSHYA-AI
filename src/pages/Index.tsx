@@ -9,7 +9,7 @@ import ParallaxBackground from "@/components/ParallaxBackground";
 const Index = () => {
   return (
     <div className="w-full flex-grow">
-      <ParallaxBackground />
+
       <Hero />
       <DefenceAnalysisPreview />
       <WhatSSBDemands />
