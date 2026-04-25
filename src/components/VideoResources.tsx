@@ -1,18 +1,7 @@
 import { Card } from "@/components/ui/card";
-import { useState, useEffect } from "react";
-import { Play, Youtube, ExternalLink } from "lucide-react";
-import backgroundImage from "@/assets/nda-background.jpg";
+import { useState } from "react";
+import { Play } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { invokeWithRetry } from "@/hooks/useRetryFetch";
-import { Badge } from "@/components/ui/badge";
-
-interface ChannelVideo {
-  title: string;
-  videoId: string;
-  thumbnail: string;
-  pubDate: string;
-  description: string;
-}
 
 const staticVideos = [
   {
