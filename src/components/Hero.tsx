@@ -223,7 +223,7 @@ const Hero = () => {
               <Button
                 size="lg"
                 className="bg-primary hover:bg-primary-glow text-base px-6 py-5 shadow-glow transition-all duration-300 hover:scale-105"
-                onClick={() => document.getElementById('study-materials')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => window.open('https://ssbmentor.com', '_blank')}
               >
                 Access Study Materials
               </Button>

@@ -1,5 +1,4 @@
 import StudyMaterials from "@/components/StudyMaterials";
-import VideoResources from "@/components/VideoResources";
 
 const Materials = () => {
   return (
@@ -8,12 +7,11 @@ const Materials = () => {
         <div className="text-center space-y-4">
           <h1 className="text-4xl md:text-5xl font-bold text-gradient glow">Study Materials</h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-            Comprehensive resources including OIR, TAT, WAT, SRT, and expert video guides.
+            Comprehensive resources including OIR, TAT, WAT, and SRT guides.
           </p>
         </div>
         
         <StudyMaterials />
-        <VideoResources />
       </div>
     </div>
   );
