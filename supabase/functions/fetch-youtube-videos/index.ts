@@ -14,11 +14,16 @@ interface YouTubeVideo {
   description: string;
 }
 
+function isShort(title: string, description: string): boolean {
+  const haystack = `${title} ${description}`.toLowerCase();
+  return haystack.includes('#shorts') || haystack.includes('#short');
+}
+
 function parseYouTubeRSS(xml: string): YouTubeVideo[] {
   const videos: YouTubeVideo[] = [];
   const entries = xml.match(/<entry>([\s\S]*?)<\/entry>/g) || [];
 
-  for (const entry of entries.slice(0, 15)) {
+  for (const entry of entries) {
     try {
       const titleMatch = entry.match(/<title>(.*?)<\/title>/);
       const videoIdMatch = entry.match(/<yt:videoId>(.*?)<\/yt:videoId>/);
@@ -28,16 +33,20 @@ function parseYouTubeRSS(xml: string): YouTubeVideo[] {
       const title = titleMatch?.[1]?.trim();
       const videoId = videoIdMatch?.[1]?.trim();
       const pubDate = pubDateMatch?.[1]?.trim();
+      const description = descMatch?.[1]?.trim() || '';
 
-      if (title && videoId) {
-        videos.push({
-          title: title.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"'),
-          videoId,
-          thumbnail: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
-          pubDate: pubDate || new Date().toISOString(),
-          description: descMatch?.[1]?.trim().slice(0, 200) || '',
-        });
-      }
+      if (!title || !videoId) continue;
+      if (isShort(title, description)) continue;
+
+      videos.push({
+        title: title.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"'),
+        videoId,
+        thumbnail: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
+        pubDate: pubDate || new Date().toISOString(),
+        description: description.slice(0, 200),
+      });
+
+      if (videos.length >= 6) break;
     } catch {
       continue;
     }
