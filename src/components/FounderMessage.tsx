@@ -12,8 +12,17 @@ const FounderMessage = () => {
   return (
     <section className="relative py-24 overflow-hidden">
       {/* Background with parallax */}
-      
-        
+      <div
+        className="absolute inset-0 z-0"
+        style={{ transform: `translateY(${parallaxY}px)` }}
+      >
+        <img
+          src={ndaPainting}
+          alt="NDA Background"
+          className="w-full h-full object-cover opacity-15"
+          style={{ filter: "blur(3px)" }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/98 to-background" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -39,7 +48,7 @@ const FounderMessage = () => {
                     alt="32 SSB Jalandhar Batch"
                     className="rounded-lg shadow-2xl transition-transform duration-500 group-hover:scale-105"
                   />
-                  
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg" />
                 </div>
               </div>
 

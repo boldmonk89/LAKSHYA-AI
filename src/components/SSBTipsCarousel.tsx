@@ -51,7 +51,20 @@ const SSBTipsCarousel = () => {
 
   return (
     <section className="relative py-24 overflow-hidden">
-      
+      {/* Background with parallax */}
+      <div
+        className="absolute inset-0 z-0"
+        style={{ transform: `translateY(${parallaxY}px)` }}
+      >
+        <img
+          src={ndaBackground}
+          alt="SSB Background"
+          className="w-full h-full object-cover opacity-20"
+          style={{ filter: "blur(4px)" }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
+      </div>
+
       <div className="container mx-auto px-4 relative z-10">
         <div
           ref={ref}

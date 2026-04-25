@@ -166,11 +166,20 @@ const SSBBoards = () => {
 
   return (
     <section id="ssb-boards" className="relative py-24 px-4 overflow-hidden">
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: `url(${backgroundImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          opacity: 0.75,
+          filter: 'blur(8px)',
+        }}
+      />
       
-      
-      
-      
-      
+      {/* Overlay - 10% opacity */}
+      <div className="absolute inset-0 bg-black/40 z-10" />
 
       <div className="relative z-20 max-w-7xl mx-auto">
         <div ref={titleRef} className={`text-center mb-16 scroll-fade-up ${titleVisible ? 'visible' : ''}`}>

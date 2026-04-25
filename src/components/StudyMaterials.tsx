@@ -13,11 +13,20 @@ const StudyMaterials = () => {
 
   return (
     <section id="study-materials" className="relative py-24 px-4 overflow-hidden">
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: `url(${backgroundImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          opacity: 0.75,
+          filter: 'blur(8px)',
+        }}
+      />
       
-      
-      
-      
-      
+      {/* Overlay - 10% opacity */}
+      <div className="absolute inset-0 bg-black/40 z-10" />
 
       {/* Content */}
       <div className="relative z-20 max-w-7xl mx-auto">
@@ -26,14 +35,14 @@ const StudyMaterials = () => {
             Study Materials
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Comprehensive resources for all stages of SSB preparation - Complete Preparation Library
+            Comprehensive resources for all stages of SSB preparation - Completely FREE
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Materials Card */}
           <div ref={card1Ref} className={`scroll-slide-left ${card1Visible ? 'visible' : ''}`}>
-            <Card className="glass-premium p-8 card-glow h-full flex flex-col">
+            <Card className="glass-premium p-8 card-glow h-full">
               <div className="flex items-start gap-4 mb-6">
                 <div className="p-4 bg-primary/10 rounded-lg">
                   <FileText className="w-8 h-8 text-primary" />
@@ -43,12 +52,12 @@ const StudyMaterials = () => {
                     Complete Material Library
                   </h3>
                   <p className="text-muted-foreground">
-                    Access PDFs, notes, and expert guides with <span className="text-primary font-semibold">SSBGPT (AI Assistant)</span>
+                    Access PDFs, notes, practice tests, and previous year questions
                   </p>
                 </div>
               </div>
 
-              <ul className="space-y-3 mb-8 text-foreground/80 flex-grow">
+              <ul className="space-y-3 mb-8 text-foreground/80">
                 <li className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 bg-primary rounded-full" />
                   OIR Tests & Solutions
@@ -71,20 +80,15 @@ const StudyMaterials = () => {
                 </li>
               </ul>
 
-              <div className="mt-auto space-y-4">
-                <div className="text-xs text-center text-muted-foreground/60 italic font-medium">
-                  Note: Premium resources - Subscription required
-                </div>
-                <Button 
-                  className="w-full bg-primary hover:bg-primary-glow shadow-glow transition-all duration-300 hover:scale-105 group"
-                  onClick={() => window.open(driveLink || 'https://ssbmentor.com', '_blank')}
-                >
-                  <Download className="w-4 h-4 mr-2 animate-bounce group-hover:animate-none transition-all" />
-                  Access SSB Materials
-                  <ExternalLink className="w-4 h-4 ml-2" />
-                </Button>
-              </div>
-            </Card>
+              <Button 
+              className="w-full bg-primary hover:bg-primary-glow shadow-glow transition-all duration-300 hover:scale-105 group"
+              onClick={() => window.open(driveLink, '_blank')}
+            >
+              <Download className="w-4 h-4 mr-2 animate-bounce group-hover:animate-none transition-all" />
+              Access Google Drive
+              <ExternalLink className="w-4 h-4 ml-2" />
+            </Button>
+          </Card>
           </div>
 
           {/* Features Card */}
