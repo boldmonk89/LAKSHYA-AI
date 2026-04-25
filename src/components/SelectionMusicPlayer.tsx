@@ -50,7 +50,22 @@ const SelectionMusicPlayer = ({ className }: { className?: string }) => {
   };
 
   return (
-    <div className={cn("w-full max-w-4xl mx-auto px-4 py-12 scroll-fade-up", className)}>
+    <div 
+      ref={(el) => {
+        if (el && !el.dataset.observed) {
+          el.dataset.observed = 'true';
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+              }
+            });
+          }, { threshold: 0.1 });
+          observer.observe(el);
+        }
+      }}
+      className={cn("w-full max-w-4xl mx-auto px-4 py-12 scroll-fade-up", className)}
+    >
       <div className="glass-premium rounded-3xl p-6 md:p-8 relative overflow-hidden group border-primary/20 bg-black/40">
         {/* Abstract Background Element */}
         <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 blur-3xl -z-10 group-hover:bg-primary/20 transition-all duration-700" />
