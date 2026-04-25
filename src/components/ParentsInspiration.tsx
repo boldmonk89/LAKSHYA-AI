@@ -1,7 +1,5 @@
 import { Card } from "@/components/ui/card";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { useParallax } from "@/hooks/useParallax";
-import backgroundImage from "@/assets/ima-dehradun.jpg";
 import officerMom1 from "@/assets/officer-mom-1.jpg";
 import officerMom2 from "@/assets/officer-mom-2.webp";
 import officerMom3 from "@/assets/officer-mom-3.jpg";
@@ -16,10 +14,9 @@ const photos = [
 
 const ParentsInspiration = () => {
   const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation();
-  const { ref: parallaxRef, offset } = useParallax(0.3);
 
   return (
-    <section ref={parallaxRef} id="parents-inspiration" className="relative py-24 px-4 overflow-hidden">
+    <section id="parents-inspiration" className="relative py-24 px-4 overflow-hidden">
 
       {/* Content */}
       <div className="relative z-20 max-w-7xl mx-auto">

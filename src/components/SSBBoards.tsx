@@ -2,7 +2,7 @@ import { Card } from "@/components/ui/card";
 import { MapPin, Hotel } from "lucide-react";
 import SSBMap from "./SSBMap";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import backgroundImage from "@/assets/soldiers-celebration.jpg";
+
 
 const armyBoards = [
   {

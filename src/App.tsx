@@ -32,20 +32,22 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Suspense fallback={<PageLoader />}>
-          <Routes>
-            <Route element={<Layout />}>
-              <Route path="/" element={<Index />} />
-              <Route path="/tools" element={<Tools />} />
-              <Route path="/materials" element={<Materials />} />
-              <Route path="/community" element={<Community />} />
-              <Route path="/analysis" element={<DefenceAnalysis />} />
-              <Route path="/analysis/:slug" element={<ArticlePage />} />
-              <Route path="/research" element={<ResearchPapers />} />
-              <Route path="*" element={<NotFound />} />
-            </Route>
-          </Routes>
-        </Suspense>
+        <div className="site-content">
+          <Suspense fallback={<PageLoader />}>
+            <Routes>
+              <Route element={<Layout />}>
+                <Route path="/" element={<Index />} />
+                <Route path="/tools" element={<Tools />} />
+                <Route path="/materials" element={<Materials />} />
+                <Route path="/community" element={<Community />} />
+                <Route path="/analysis" element={<DefenceAnalysis />} />
+                <Route path="/analysis/:slug" element={<ArticlePage />} />
+                <Route path="/research" element={<ResearchPapers />} />
+                <Route path="*" element={<NotFound />} />
+              </Route>
+            </Routes>
+          </Suspense>
+        </div>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

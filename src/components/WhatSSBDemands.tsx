@@ -1,6 +1,6 @@
 import { Shield, Brain, Users, Target, Heart, Zap } from "lucide-react";
 import { Card } from "@/components/ui/card";
-import backgroundImage from "@/assets/khetarpal-background.jpg";
+
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const qualities = [

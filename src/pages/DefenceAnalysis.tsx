@@ -18,7 +18,7 @@ const DefenceAnalysis = () => {
   const featuredArticles = sampleArticles.filter((a) => a.featured);
 
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen">
       <ScrollProgress />
       
       {/* Header */}

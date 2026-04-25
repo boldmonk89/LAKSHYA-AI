@@ -2,7 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Users, Youtube } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import backgroundImage from "@/assets/cadets-celebration.jpg";
+
 
 const telegramIcon = (
   <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
