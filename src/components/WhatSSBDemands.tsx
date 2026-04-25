@@ -69,22 +69,8 @@ const WhatSSBDemands = () => {
   
   return (
     <section id="what-ssb-demands" className="relative py-24 px-4 overflow-hidden">
-      {/* Background Image */}
-      <div 
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: `url(${backgroundImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          opacity: 0.75,
-          filter: 'blur(8px)',
-        }}
-      />
-      
-      {/* Overlay - 10% opacity */}
-          <div className="absolute inset-0 bg-black/5 z-10" />
-      <div className="absolute inset-0 shadow-section z-10" />
-      
+
+
 
       {/* Content */}
       <div className="relative z-20 max-w-7xl mx-auto">

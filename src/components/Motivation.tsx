@@ -19,21 +19,7 @@ const quotes = [
 const Motivation = () => {
   return (
     <section id="motivation" className="relative py-24 px-4 overflow-hidden">
-      {/* Background Image */}
-      <div 
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: `url(${backgroundImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          opacity: 0.75,
-          filter: 'blur(8px)',
-        }}
-      />
-      
-      {/* Overlay - reduced darkness */}
-       <div className="absolute inset-0 bg-black/40 z-10" />
-      
+
       {/* Content */}
       <div className="relative z-20 max-w-5xl mx-auto">
         <div ref={(el) => {
