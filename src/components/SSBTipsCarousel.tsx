@@ -51,11 +51,7 @@ const SSBTipsCarousel = () => {
 
   return (
     <section className="relative py-24 overflow-hidden">
-      {/* Background with parallax */}
       
-        
-      </div>
-
       <div className="container mx-auto px-4 relative z-10">
         <div
           ref={ref}
