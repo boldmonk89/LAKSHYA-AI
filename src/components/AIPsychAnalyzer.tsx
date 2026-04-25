@@ -169,19 +169,6 @@ const AIPsychAnalyzer = () => {
 
   return (
     <section id="ai-psych-analyzer" className="relative py-24 px-4 overflow-hidden">
-      {/* Fixed Background Image */}
-      <div 
-        className="fixed inset-0 z-0"
-        style={{
-          backgroundImage: `url(${backgroundImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed',
-        }}
-      />
-      
-      
-      <div className="fixed inset-0 bg-black/20 backdrop-blur-sm z-10" />
 
       {/* Content */}
       <div className="relative z-20 max-w-7xl mx-auto">

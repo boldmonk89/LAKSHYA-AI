@@ -22,20 +22,6 @@ const Contact = () => {
   const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation();
   return (
     <section id="contact" className="relative py-24 px-4 overflow-hidden">
-      {/* Background Image */}
-      <div 
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: `url(${backgroundImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          opacity: 0.8,
-          filter: 'blur(5px)',
-        }}
-      />
-      
-      {/* Overlay - 10% opacity */}
-      <div className="absolute inset-0 bg-black/15 z-10" />
 
      
     </section>
