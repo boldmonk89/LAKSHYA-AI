@@ -1,5 +1,6 @@
 import StudyMaterials from "@/components/StudyMaterials";
 import VideoResources from "@/components/VideoResources";
+import SelectionMusicPlayer from "@/components/SelectionMusicPlayer";
 
 const Materials = () => {
   return (
@@ -14,6 +15,7 @@ const Materials = () => {
         
         <StudyMaterials />
         <VideoResources />
+        <SelectionMusicPlayer />
       </div>
     </div>
   );

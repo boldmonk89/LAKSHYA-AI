@@ -4,6 +4,7 @@ import SSBBoards from "@/components/SSBBoards";
 import DailyNews from "@/components/DailyNews";
 import SSBTipsCarousel from "@/components/SSBTipsCarousel";
 import ParentsInspiration from "@/components/ParentsInspiration";
+import SelectionMusicPlayer from "@/components/SelectionMusicPlayer";
 
 const Community = () => {
   return (
@@ -22,6 +23,7 @@ const Community = () => {
         <DailyNews />
         <SSBTipsCarousel />
         <ParentsInspiration />
+        <SelectionMusicPlayer />
       </div>
     </div>
   );
