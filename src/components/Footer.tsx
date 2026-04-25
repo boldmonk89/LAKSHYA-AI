@@ -4,16 +4,8 @@ import backgroundImage from "@/assets/soldiers-celebration.jpg";
 const Footer = () => {
   return (
     <footer className="relative py-12 px-4 overflow-hidden">
-      {/* Fixed Background - visible through footer */}
-      <div 
-        className="fixed inset-0 z-0"
-        style={{
-          backgroundImage: `url(${backgroundImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed',
-        }}
-      />
+      
+      
 
       {/* Content */}
       <div className="relative z-20 max-w-7xl mx-auto">
@@ -35,12 +27,12 @@ const Footer = () => {
             <Instagram className="w-8 h-8 text-pink-500 mx-auto mb-3" />
             <h3 className="text-lg font-bold text-gradient mb-2">Instagram</h3>
             <a 
-              href="https://www.instagram.com/tejasraghavvv/?hl=en"
+              href="https://www.instagram.com/traghavvv/?hl=en"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-muted-foreground hover:text-pink-500 transition-colors"
             >
-              @tejasraghavvv
+              @traghavvv
             </a>
           </div>
 

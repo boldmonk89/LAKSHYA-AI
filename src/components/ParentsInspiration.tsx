@@ -20,21 +20,11 @@ const ParentsInspiration = () => {
 
   return (
     <section ref={parallaxRef} id="parents-inspiration" className="relative py-24 px-4 overflow-hidden">
-      {/* Background Image */}
-      <div 
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: `url(${backgroundImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          opacity: 0.75,
-          filter: 'blur(8px)',
-          transform: `translateY(${offset}px)`,
-        }}
-      />
       
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black/40 z-10" />
+      
+      
+      
+      
 
       {/* Content */}
       <div className="relative z-20 max-w-7xl mx-auto">
@@ -68,7 +58,7 @@ const ParentsInspiration = () => {
                       alt={photo.alt}
                       className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
+                    
                   </div>
                 </Card>
               </div>

@@ -180,7 +180,7 @@ const AIPsychAnalyzer = () => {
         }}
       />
       
-      {/* Overlay - 90% opacity, 2% blur */}
+      
       <div className="fixed inset-0 bg-black/20 backdrop-blur-sm z-10" />
 
       {/* Content */}
