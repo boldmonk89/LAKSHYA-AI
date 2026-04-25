@@ -89,6 +89,13 @@ const VideoResources = () => {
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">Expert-curated video content covering all SSB stages</p>
         </div>
 
+        {/* SSB Guide Videos */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {staticVideos.map((video, index) => (
+            <VideoCard key={index} video={video} index={index} />
+          ))}
+        </div>
+
         {/* Motivational Line */}
         <div ref={(el) => {
           if (el && !el.dataset.observed) {
