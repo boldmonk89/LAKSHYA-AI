@@ -5,7 +5,7 @@ import { Sparkles, Brain, Lightbulb, Target, Upload, RefreshCw } from "lucide-re
 import { useState, useRef } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { invokeWithRetry } from "@/hooks/useRetryFetch";
-import backgroundImage from "@/assets/lakshya-background.jpg";
+
 import tat1 from "@/assets/tat-1.jpg";
 import tat2 from "@/assets/tat-2.jpg";
 import tat3 from "@/assets/tat-3.jpg";

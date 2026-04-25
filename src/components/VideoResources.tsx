@@ -4,7 +4,6 @@ import { Play, Youtube, ExternalLink } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Badge } from "@/components/ui/badge";
 import { invokeWithRetry } from "@/utils/supabaseRetry";
-import backgroundImage from "@/assets/soldiers-celebration.jpg";
 
 interface ChannelVideo {
   videoId: string;

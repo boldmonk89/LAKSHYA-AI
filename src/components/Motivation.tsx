@@ -1,5 +1,5 @@
 import { Quote } from "lucide-react";
-import backgroundImage from "@/assets/khetarpal-background.jpg";
+
 
 const quotes = [
   {

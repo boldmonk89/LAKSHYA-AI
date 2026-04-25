@@ -1,8 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { CheckCircle2, BookOpen, Users, Stethoscope, Trophy, GraduationCap, Medal } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { useParallax } from "@/hooks/useParallax";
-import backgroundImage from "@/assets/nda-building.jpg";
 
 const timelineSteps = [
   {
@@ -112,10 +110,9 @@ const TimelineStep = ({ step, index, isLast }: { step: typeof timelineSteps[0], 
 
 const JourneyTimeline = () => {
   const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation();
-  const { ref: parallaxRef, offset } = useParallax(0.3);
 
   return (
-    <section ref={parallaxRef} id="journey-timeline" className="relative py-24 px-4 overflow-hidden">
+    <section id="journey-timeline" className="relative py-24 px-4 overflow-hidden">
 
       {/* Content */}
       <div className="relative z-20 max-w-6xl mx-auto">

@@ -1,5 +1,5 @@
 import { Mail, Instagram, Send } from "lucide-react";
-import backgroundImage from "@/assets/soldiers-celebration.jpg";
+
 
 const Footer = () => {
   return (

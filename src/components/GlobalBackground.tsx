@@ -2,15 +2,10 @@ import backgroundImage from "@/assets/soldiers-celebration.jpg";
 
 const GlobalBackground = () => {
   return (
-    <div 
-      className="fixed inset-0 -z-20 w-full h-full"
-      style={{
-        backgroundImage: `url(${backgroundImage})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed',
-        filter: 'blur(4px) brightness(0.4)',
-      }}
+    <div
+      aria-hidden="true"
+      className="fixed inset-0 z-0 h-screen w-screen pointer-events-none bg-site-fixed"
+      style={{ '--site-bg-image': `url(${backgroundImage})` } as React.CSSProperties}
     />
   );
 };

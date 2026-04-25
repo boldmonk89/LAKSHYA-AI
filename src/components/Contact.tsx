@@ -2,7 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Send, Instagram, Mail } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import backgroundImage from "@/assets/contact-background.jpg";
+
 
 const ContactCard = ({ children, index }: { children: React.ReactNode, index: number }) => {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.3 });
