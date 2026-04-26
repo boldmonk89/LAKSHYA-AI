@@ -5,6 +5,7 @@ import JourneyTimeline from "@/components/JourneyTimeline";
 import Contact from "@/components/Contact";
 import DefenceAnalysisPreview from "@/components/DefenceAnalysisPreview";
 import OfficerLifeGallery from "@/components/OfficerLifeGallery";
+import QuickAccessResources from "@/components/QuickAccessResources";
 
 const Index = () => {
   return (
@@ -15,6 +16,7 @@ const Index = () => {
       <Motivation />
       <OfficerLifeGallery />
       <JourneyTimeline />
+      <QuickAccessResources />
       <Contact />
     </div>
   );
