@@ -1,6 +1,7 @@
 import { Mail, Instagram, Send, Heart } from "lucide-react";
 import founderImage from "@/assets/founder.jpg";
 import SelectionMusicPlayer from "./SelectionMusicPlayer";
+import GooeyNav from "./GooeyNav";
 
 const Footer = () => {
   return (
@@ -65,6 +66,20 @@ const Footer = () => {
               </a>
             </div>
           </div>
+        </div>
+
+        <div className="flex flex-col items-center gap-8 mb-16">
+          <h4 className="text-sm font-bold text-primary/60 uppercase tracking-[0.3em] text-center">
+            Explore Lakshya
+          </h4>
+          <GooeyNav 
+            items={[
+              { label: "Blueprint", href: "#blueprint" },
+              { label: "Gallery", href: "#gallery" },
+              { label: "Timeline", href: "#timeline" },
+              { label: "Resources", href: "#resources" }
+            ]}
+          />
         </div>
 
         <div className="border-t border-primary/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
