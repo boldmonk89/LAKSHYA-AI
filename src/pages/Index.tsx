@@ -7,6 +7,7 @@ import DefenceAnalysisPreview from "@/components/DefenceAnalysisPreview";
 import OfficerLifeGallery from "@/components/OfficerLifeGallery";
 import QuickAccessResources from "@/components/QuickAccessResources";
 import FluidBlueprint from "@/components/FluidBlueprint";
+import ArmedForcesMarquee from "@/components/ArmedForcesMarquee";
 
 const Index = () => {
   return (
@@ -19,6 +20,7 @@ const Index = () => {
       <OfficerLifeGallery />
       <JourneyTimeline />
       <QuickAccessResources />
+      <ArmedForcesMarquee />
       <Contact />
     </div>
   );
