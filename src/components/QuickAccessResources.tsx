@@ -2,9 +2,9 @@ import FlowingMenu from "./FlowingMenu";
 
 const resourceItems = [
   { link: "/materials", text: "OIR Practice Hub", image: "/images/motivational/officer-4.jpg" },
-  { link: "/materials", text: "PPDT & TAT Stories", image: "/src/assets/tat-1.jpg" },
-  { link: "/tools", text: "AI Psych Analyzer", image: "/src/assets/you-belong-here.jpeg" },
-  { link: "/community", text: "SSB Recommendations", image: "/src/assets/ima-parade.jpeg" },
+  { link: "/materials", text: "PPDT & TAT Stories", image: "/images/resources/tat-1.jpg" },
+  { link: "/tools", text: "AI Psych Analyzer", image: "/images/resources/you-belong-here.jpeg" },
+  { link: "/community", text: "SSB Recommendations", image: "/images/resources/ima-parade.jpeg" },
 ];
 
 const QuickAccessResources = () => {
