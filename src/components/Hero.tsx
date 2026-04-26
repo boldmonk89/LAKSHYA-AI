@@ -138,7 +138,7 @@ const Hero = () => {
               muted // start muted to allow autoplay visual
               playsInline
               poster={nda3}
-              className="absolute inset-0 w-full h-full object-cover z-10"
+              className="absolute inset-0 w-full h-full object-cover object-top z-10 scale-110 origin-top"
             >
               <source src="/hero-video.mp4" type="video/mp4" />
             </video>

@@ -1,9 +1,11 @@
 import { Mail, Instagram, Send, Heart } from "lucide-react";
 import founderImage from "@/assets/founder.jpg";
+import SelectionMusicPlayer from "./SelectionMusicPlayer";
 
 const Footer = () => {
   return (
     <footer className="relative py-16 px-4 overflow-hidden border-t border-primary/10">
+      <SelectionMusicPlayer className="mb-16" />
       {/* Content */}
       <div className="relative z-20 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16 items-center">

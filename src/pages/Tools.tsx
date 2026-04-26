@@ -1,7 +1,6 @@
 import AIPsychAnalyzer from "@/components/AIPsychAnalyzer";
 import PiqAnalyzer from "@/components/PiqAnalyzer";
 import AIChatbot from "@/components/AIChatbot";
-import SelectionMusicPlayer from "@/components/SelectionMusicPlayer";
 
 const Tools = () => {
   return (
@@ -17,7 +16,6 @@ const Tools = () => {
         <AIPsychAnalyzer />
         <PiqAnalyzer />
         <AIChatbot />
-        <SelectionMusicPlayer />
       </div>
     </div>
   );
