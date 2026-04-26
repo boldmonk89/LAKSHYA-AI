@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
+import { useNavigate } from 'react-router-dom';
 import './FlowingMenu.css';
 
 interface FlowingMenuItem {
@@ -60,6 +61,7 @@ function MenuItem({ link, text, image, speed, textColor, marqueeBgColor, marquee
   const marqueeInnerRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<gsap.core.Tween | null>(null);
   const [repetitions, setRepetitions] = useState(4);
+  const navigate = useNavigate();
 
   const animationDefaults = { duration: 0.6, ease: 'expo' };
 
@@ -145,11 +147,25 @@ function MenuItem({ link, text, image, speed, textColor, marqueeBgColor, marquee
       .to(marqueeInnerRef.current, { y: edge === 'top' ? '101%' : '-101%' }, 0);
   };
 
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (link.startsWith('#')) {
+      const target = document.querySelector(link);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      navigate(link);
+      window.scrollTo(0, 0);
+    }
+  };
+
   return (
     <div className="menu__item" ref={itemRef} style={{ borderColor }}>
       <a
         className="menu__item-link"
         href={link}
+        onClick={handleClick}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         style={{ color: textColor }}
