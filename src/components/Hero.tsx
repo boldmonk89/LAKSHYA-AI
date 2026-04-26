@@ -7,8 +7,10 @@ import youBelongHere from "@/assets/you-belong-here.jpeg";
 import majMohit from "@/assets/maj-mohit-sharma.jpeg";
 import imaDehradun from "@/assets/ima-dehradun-3.jpg";
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
+  const navigate = useNavigate();
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const heroRef = useRef<HTMLDivElement | null>(null);
 
@@ -190,7 +192,7 @@ const Hero = () => {
           </div>
 
           {/* Content - Right Side */}
-          <div className="relative z-[2] text-center lg:text-left animate-none">
+          <div className="relative z-30 text-center lg:text-left animate-none">
             <div className="mb-6">
               <div className="inline-block px-6 py-3 rounded-2xl glass-premium">
                 <h1 className="text-4xl md:text-5xl font-bold text-gradient glow mb-1">
@@ -231,7 +233,7 @@ const Hero = () => {
                 size="lg"
                 variant="outline"
                 className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground text-base px-6 py-5 transition-all duration-300 hover:scale-105"
-                onClick={() => document.getElementById('ai-psych-analyzer')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => navigate('/tools')}
               >
                 Try AI Psych Analyzer
               </Button>
