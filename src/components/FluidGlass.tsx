@@ -10,7 +10,8 @@ import {
   Preload,
   ScrollControls,
   MeshTransmissionMaterial,
-  Text
+  Text,
+  Environment
 } from '@react-three/drei';
 import { easing } from 'maath';
 
@@ -19,7 +20,9 @@ export default function FluidGlass({ mode = 'lens', lensProps = {}, cubeProps = 
   const modeProps = mode === 'cube' ? cubeProps : lensProps;
 
   return (
-    <Canvas camera={{ position: [0, 0, 20], fov: 15 }} gl={{ alpha: true }}>
+    <Canvas camera={{ position: [0, 0, 20], fov: 15 }} gl={{ alpha: true, antialias: true }}>
+      <ambientLight intensity={0.5} />
+      <pointLight position={[10, 10, 10]} intensity={1} />
       <ScrollControls damping={0.2} pages={3} distance={0.4}>
         <Wrapper modeProps={modeProps}>
           <Scroll>
@@ -53,9 +56,9 @@ const ModeWrapper = memo(function ModeWrapper({
 
     const destX = followPointer ? (pointer.x * v.width) / 2 : 0;
     const destY = lockToBottom ? -v.height / 2 + 0.2 : followPointer ? (pointer.y * v.height) / 2 : 0;
-    easing.damp3(ref.current.position, [destX, destY, 15], 0.15, delta);
-
+    
     if (ref.current) {
+        easing.damp3(ref.current.position, [destX, destY, 15], 0.15, delta);
         ref.current.rotation.x += delta * 0.2;
         ref.current.rotation.y += delta * 0.3;
     }
@@ -64,18 +67,24 @@ const ModeWrapper = memo(function ModeWrapper({
     gl.render(scene, camera);
     gl.setRenderTarget(null);
 
-    // Dark Background for LAKSHYA Theme
-    gl.setClearColor(0x050505, 1);
+    gl.setClearColor(0x0a0a0a, 1);
   });
 
   const { scale, ior, thickness, anisotropy, chromaticAberration, ...extraMat } = modeProps;
 
   return (
     <>
-      {createPortal(children, scene)}
+      {createPortal(
+        <>
+          <ambientLight intensity={0.5} />
+          <pointLight position={[10, 10, 10]} />
+          {children}
+        </>, 
+        scene
+      )}
       <mesh scale={[vp.width, vp.height, 1]}>
         <planeGeometry />
-        <meshBasicMaterial map={buffer.texture} transparent opacity={0.8} />
+        <meshBasicMaterial map={buffer.texture} transparent opacity={1} />
       </mesh>
       <mesh ref={ref} scale={scale ?? 1.5} {...props}>
         {geometry}
@@ -122,7 +131,7 @@ function Images() {
   const { height } = useThree(s => s.viewport);
 
   useFrame(() => {
-    if (!group.current) return;
+    if (!group.current || !group.current.children[0]) return;
     group.current.children[0].material.zoom = 1 + data.range(0, 1 / 3) / 3;
     group.current.children[1].material.zoom = 1 + data.range(0, 1 / 3) / 3;
     group.current.children[2].material.zoom = 1 + data.range(1.15 / 3, 1 / 3) / 2;
@@ -130,9 +139,9 @@ function Images() {
 
   return (
     <group ref={group}>
-      <Image position={[-2, 0, 0]} scale={[3, height / 1.1, 1]} url="/src/assets/ima-parade.jpeg" />
-      <Image position={[2, 0, 3]} scale={3} url="/src/assets/you-belong-here.jpeg" />
-      <Image position={[-2.05, -height, 6]} scale={[1, 3, 1]} url="/src/assets/tat-1.jpg" />
+      <Image position={[-2, 0, 0]} scale={[3, height / 1.1, 1]} url="/images/resources/ima-parade.jpeg" />
+      <Image position={[2, 0, 3]} scale={3} url="/images/resources/you-belong-here.jpeg" />
+      <Image position={[-2.05, -height, 6]} scale={[1, 3, 1]} url="/images/resources/tat-1.jpg" />
     </group>
   );
 }
@@ -146,7 +155,6 @@ function Typography() {
       color="white"
       anchorX="center"
       anchorY="middle"
-      font="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuGkyMZhrib2Bg-4.woff"
     >
       THE BLUEPRINT
     </Text>
