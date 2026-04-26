@@ -111,6 +111,15 @@ const GooeyNav = ({
 
   const handleClick = (e: MouseEvent<HTMLLIElement> | { currentTarget: HTMLLIElement }, index: number) => {
     const liEl = e.currentTarget as HTMLLIElement;
+    
+    // Explicit navigation for hash links
+    const item = items[index];
+    if (item.href.startsWith('#')) {
+      window.location.hash = item.href;
+    } else {
+      window.location.href = item.href;
+    }
+
     if (activeIndex === index) return;
 
     setActiveIndex(index);
