@@ -4,6 +4,7 @@ import Motivation from "@/components/Motivation";
 import JourneyTimeline from "@/components/JourneyTimeline";
 import Contact from "@/components/Contact";
 import DefenceAnalysisPreview from "@/components/DefenceAnalysisPreview";
+import OfficerLifeGallery from "@/components/OfficerLifeGallery";
 
 const Index = () => {
   return (
@@ -12,6 +13,7 @@ const Index = () => {
       <DefenceAnalysisPreview />
       <WhatSSBDemands />
       <Motivation />
+      <OfficerLifeGallery />
       <JourneyTimeline />
       <Contact />
     </div>
