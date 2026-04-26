@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unknown-property */
 import * as THREE from 'three';
-import { useRef, useState, memo } from 'react';
+import { useRef, useState, memo, useMemo } from 'react';
 import { Canvas, createPortal, useFrame, useThree } from '@react-three/fiber';
 import {
   useFBO,
@@ -19,25 +19,20 @@ export default function FluidGlass({ mode = 'lens', lensProps = {}, cubeProps = 
   const modeProps = mode === 'cube' ? cubeProps : lensProps;
 
   return (
-    <Canvas 
-      camera={{ position: [0, 0, 25], fov: 25 }} 
-      gl={{ alpha: true, antialias: true }}
-      style={{ background: '#0a0a0a' }}
-    >
-      <color attach="background" args={['#050505']} />
-      <ambientLight intensity={1} />
-      <directionalLight position={[10, 10, 5]} intensity={2} />
-      <ScrollControls damping={0.2} pages={3} distance={0.5}>
-        <Wrapper modeProps={modeProps}>
-          <Scroll>
-            <Typography />
-            <Images />
-          </Scroll>
-          <Scroll html />
-          <Preload />
-        </Wrapper>
-      </ScrollControls>
-    </Canvas>
+    <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+        <Canvas camera={{ position: [0, 0, 20], fov: 15 }} gl={{ alpha: true }}>
+        <ScrollControls damping={0.2} pages={3} distance={0.4}>
+            <Wrapper modeProps={modeProps}>
+            <Scroll>
+                <Typography />
+                <Images />
+            </Scroll>
+            <Scroll html />
+            <Preload />
+            </Wrapper>
+        </ScrollControls>
+        </Canvas>
+    </div>
   );
 }
 
@@ -51,11 +46,7 @@ const ModeWrapper = memo(function ModeWrapper({
   const ref = useRef<any>();
   const buffer = useFBO();
   const { viewport: vp } = useThree();
-  const [scene] = useState(() => {
-    const s = new THREE.Scene();
-    s.background = new THREE.Color('#0a0a0a');
-    return s;
-  });
+  const [scene] = useState(() => new THREE.Scene());
 
   useFrame((state, delta) => {
     const { gl, viewport, pointer, camera } = state;
@@ -65,46 +56,39 @@ const ModeWrapper = memo(function ModeWrapper({
     const destY = followPointer ? (pointer.y * v.height) / 2 : 0;
     
     if (ref.current) {
-        easing.damp3(ref.current.position, [destX, destY, 12], 0.1, delta);
+        easing.damp3(ref.current.position, [destX, destY, 15], 0.15, delta);
         ref.current.rotation.x += delta * 0.2;
         ref.current.rotation.y += delta * 0.3;
     }
 
-    // Capture the scene into the buffer
     gl.setRenderTarget(buffer);
     gl.render(scene, camera);
     gl.setRenderTarget(null);
   });
 
-  const { ior, thickness, chromaticAberration, ...extraMat } = modeProps;
+  const { ior, thickness, anisotropy, chromaticAberration, ...extraMat } = modeProps;
 
   return (
     <>
       {createPortal(
         <>
-          <ambientLight intensity={1} />
-          <directionalLight position={[5, 5, 5]} intensity={1} />
+          <ambientLight intensity={1.5} />
           {children}
         </>, 
         scene
       )}
-      
-      {/* The background plane that shows what's in the scene */}
-      <mesh scale={[vp.width * 2, vp.height * 2, 1]} position={[0, 0, 0]}>
+      <mesh scale={[vp.width, vp.height, 1]}>
         <planeGeometry />
-        <meshBasicMaterial map={buffer.texture} />
+        <meshBasicMaterial map={buffer.texture} transparent />
       </mesh>
-
-      {/* The Glass Lens */}
-      <mesh ref={ref} scale={2} {...props}>
+      <mesh ref={ref} scale={1.5} {...props}>
         {geometry}
         <MeshTransmissionMaterial
           buffer={buffer.texture}
-          ior={ior ?? 1.2}
-          thickness={thickness ?? 1.5}
-          chromaticAberration={chromaticAberration ?? 0.05}
-          transmission={1}
-          background={new THREE.Color('#0a0a0a')}
+          ior={ior ?? 1.15}
+          thickness={thickness ?? 2}
+          anisotropy={anisotropy ?? 0.01}
+          chromaticAberration={chromaticAberration ?? 0.1}
           {...extraMat}
         />
       </mesh>
@@ -115,9 +99,10 @@ const ModeWrapper = memo(function ModeWrapper({
 function Lens({ modeProps, ...p }: any) {
   return (
     <ModeWrapper 
-      geometry={<torusGeometry args={[2, 0.6, 32, 64]} />} 
-      modeProps={modeProps} 
-      {...p} 
+        geometry={<torusGeometry args={[2, 0.4, 32, 100]} />} 
+        followPointer 
+        modeProps={modeProps} 
+        {...p} 
     />
   );
 }
@@ -125,22 +110,31 @@ function Lens({ modeProps, ...p }: any) {
 function Cube({ modeProps, ...p }: any) {
   return (
     <ModeWrapper 
-      geometry={<boxGeometry args={[3, 3, 3]} />} 
-      modeProps={modeProps} 
-      {...p} 
+        geometry={<boxGeometry args={[2, 2, 2]} />} 
+        followPointer 
+        modeProps={modeProps} 
+        {...p} 
     />
   );
 }
 
 function Images() {
   const group = useRef<any>();
+  const data = useScroll();
   const { height } = useThree(s => s.viewport);
+
+  useFrame(() => {
+    if (!group.current || !group.current.children[0]) return;
+    group.current.children[0].material.zoom = 1 + data.range(0, 1 / 3) / 3;
+    group.current.children[1].material.zoom = 1 + data.range(0, 1 / 3) / 3;
+    group.current.children[2].material.zoom = 1 + data.range(1.15 / 3, 1 / 3) / 2;
+  });
 
   return (
     <group ref={group}>
-      <Image position={[-3, 0, 0]} scale={[4, 6, 1]} url="/images/resources/ima-parade.jpeg" />
-      <Image position={[3, 0, 2]} scale={4} url="/images/resources/you-belong-here.jpeg" />
-      <Image position={[0, -height, 4]} scale={5} url="/images/resources/tat-1.jpg" />
+      <Image position={[-2, 0, 0]} scale={[3, height / 1.1, 1]} url="/images/resources/ima-parade.jpeg" />
+      <Image position={[2, 0, 3]} scale={3} url="/images/resources/you-belong-here.jpeg" />
+      <Image position={[-2.05, -height, 6]} scale={[1, 3, 1]} url="/images/resources/tat-1.jpg" />
     </group>
   );
 }
@@ -148,12 +142,12 @@ function Images() {
 function Typography() {
   return (
     <Text
-      position={[0, 2, 8]}
-      fontSize={1.2}
-      color="#ffffff"
+      position={[0, 0, 12]}
+      fontSize={0.8}
+      letterSpacing={-0.05}
+      color="white"
       anchorX="center"
       anchorY="middle"
-      fontWeight="bold"
     >
       LAKSHYA AI
     </Text>
