@@ -173,7 +173,6 @@ const GooeyNav = ({
             >
               <a 
                 href={item.href} 
-                onClick={e => e.preventDefault()} 
                 onKeyDown={e => handleKeyDown(e, index)}
               >
                 {item.label}
