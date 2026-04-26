@@ -13,6 +13,7 @@ const Index = () => {
     <div className="w-full flex-grow">
       <Hero />
       <DefenceAnalysisPreview />
+      <FluidBlueprint />
       <WhatSSBDemands />
       <Motivation />
       <OfficerLifeGallery />
