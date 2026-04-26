@@ -7,81 +7,72 @@ import {
   Image,
   Scroll,
   ScrollControls,
-  MeshTransmissionMaterial,
   Text,
   Float
 } from '@react-three/drei';
-import { easing } from 'maath';
 
-// Error Boundary for WebGL/Three.js crashes
-class SceneErrorBoundary extends React.Component<any, { hasError: boolean }> {
-  constructor(props: any) {
-    super(props);
-    this.state = { hasError: false };
-  }
-  static getDerivedStateFromError() { return { hasError: true }; }
-  render() {
-    if (this.state.hasError) return <div className="h-full w-full bg-black/20 flex items-center justify-center text-white/50 italic">3D Scene unavailable</div>;
-    return this.props.children;
-  }
-}
+// Safe Material for Glass effect without crashing
+const GlassMaterial = () => (
+  <meshPhysicalMaterial
+    transmission={1}
+    thickness={2}
+    roughness={0.05}
+    ior={1.2}
+    reflectivity={1}
+    clearcoat={1}
+    clearcoatRoughness={0.1}
+    color="#ffffff"
+    attenuationColor="#ffffff"
+    attenuationDistance={1}
+  />
+);
 
-import React from 'react';
-
-export default function FluidGlass({ mode = 'lens', lensProps = {} }: any) {
+export default function FluidGlass() {
   return (
-    <div className="w-full h-full relative bg-black/5">
-      <SceneErrorBoundary>
-        <Suspense fallback={<div className="w-full h-full bg-black/10 animate-pulse" />}>
-          <Canvas camera={{ position: [0, 0, 20], fov: 25 }} gl={{ alpha: true }}>
-            <ambientLight intensity={0.8} />
-            <pointLight position={[10, 10, 10]} intensity={1} />
-            <ScrollControls damping={0.2} pages={3} distance={0.5}>
-              <Scroll>
-                <Images />
-                <Typography />
-              </Scroll>
-              <GlassLens modeProps={lensProps} />
-            </ScrollControls>
-          </Canvas>
-        </Suspense>
-      </SceneErrorBoundary>
+    <div style={{ width: '100%', height: '100%', minHeight: '600px', background: '#050505' }}>
+      <Suspense fallback={<div className="h-full w-full bg-black flex items-center justify-center text-primary animate-pulse">Loading Blueprint...</div>}>
+        <Canvas camera={{ position: [0, 0, 20], fov: 20 }} gl={{ alpha: true }}>
+          <ambientLight intensity={1} />
+          <pointLight position={[10, 10, 10]} intensity={2} />
+          <spotLight position={[-10, 10, 10]} angle={0.15} penumbra={1} />
+          
+          <ScrollControls damping={0.1} pages={3}>
+            <Scroll>
+              <Images />
+              <Typography />
+            </Scroll>
+            <Lens />
+          </ScrollControls>
+        </Canvas>
+      </Suspense>
     </div>
   );
 }
 
-function GlassLens({ modeProps }: any) {
+function Lens() {
   const ref = useRef<any>();
   const { viewport } = useThree();
 
-  useFrame((state, delta) => {
+  useFrame((state) => {
     const { pointer } = state;
-    const x = (pointer.x * viewport.width) / 2;
-    const y = (pointer.y * viewport.height) / 2;
-    
+    // Follow mouse smoothly
     if (ref.current) {
-      easing.damp3(ref.current.position, [x, y, 10], 0.2, delta);
-      ref.current.rotation.x += delta * 0.5;
-      ref.current.rotation.y += delta * 0.3;
+        const targetX = (pointer.x * viewport.width) / 2;
+        const targetY = (pointer.y * viewport.height) / 2;
+        ref.current.position.x += (targetX - ref.current.position.x) * 0.1;
+        ref.current.position.y += (targetY - ref.current.position.y) * 0.1;
+        
+        ref.current.rotation.x += 0.01;
+        ref.current.rotation.y += 0.01;
     }
   });
 
   return (
-    <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
-      <mesh ref={ref} scale={2}>
-        <torusGeometry args={[1.5, 0.4, 32, 100]} />
-        <MeshTransmissionMaterial
-          ior={modeProps.ior ?? 1.2}
-          thickness={modeProps.thickness ?? 1.5}
-          anisotropy={0.1}
-          chromaticAberration={0.05}
-          distortion={0.5}
-          distortionScale={0.5}
-          temporalDistortion={0.1}
-          transmission={1}
-          roughness={0.1}
-        />
-      </mesh>
+    <Float speed={2} rotationIntensity={1} floatIntensity={1}>
+        <mesh ref={ref} position={[0, 0, 10]}>
+            <torusGeometry args={[1.5, 0.4, 32, 100]} />
+            <GlassMaterial />
+        </mesh>
     </Float>
   );
 }
@@ -102,13 +93,13 @@ function Typography() {
   return (
     <Text
       position={[0, 2, 8]}
-      fontSize={1.5}
+      fontSize={1.2}
       color="#ffffff"
       anchorX="center"
       anchorY="middle"
       fontWeight="bold"
     >
-      LAKSHYA AI
+      LAKSHYA SELECTION BLUEPRINT
     </Text>
   );
 }
